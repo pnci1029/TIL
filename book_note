@@ -53,6 +53,52 @@
        - 은행과 사용자 간의 트래픽이 암호화일때는 도청불가능, 개방형 무선랜에서는 공격자가 연결가능
        - 시그널, 왓츠앱, 아이메시지같은 보안메시징 앱을 사용하여 보안강화가능
           
+          
+          
+          
+          
+20. 10억개 전화번호에서 이름찾기:이진검색
+       - 이진검색이란?>          
+          1000명중 찾고싶은 사람 찾기?
+          1000 -> 500 -> 250 -> 125 ->62 -> 31 ->15->8->4->2->1
+          
+          2^32 = 4294967296(약 43억)
+          2^33 = 8589934592(약 86억)
+          
+21. 검색을 쉽게 만드는 정렬: 선택 정렬vs 퀵  정렬
+        
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+        
+        ㅊ 16개
+        
+        Facebook   Bing   Apple   Ebay
+        Intel   Google   Microsoft   IMB
+        Pinterest   Sony   PayPal   Skype
+        Zillow   Yahoo   Twitter   Verizon
+        
+        
+        
+        Bing Apple
+        Facebook  Ebay
+        Intel   Google   IBM
+        Microsoft
+        Pinterest   Paypal
+        Sony   Skype
+        Twitter   Verizon
+        Zillow    Yahoo
+       
+     
+        
+        - 선택정렬?
+         - 10개 이름 정렬하기
+          10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1  => 55
+        - 10^2개  이름 정렬하기
+          100 + 99 + 98 + ... + 2 + 1 = 5050
+        
+        
+        - 퀵정렬?
+          
 
+       
          
          
