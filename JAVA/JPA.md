@@ -57,5 +57,54 @@
   ```
     
     
+*. 영속성 컨텍스?
+  - 
+  - 엔티티를 영구 저장하는 환경
+  - 한 트랜잭션 내에서 짧은기간동안 수행 후 비즈니스 로직 종료 후에 지워짐 
+  - 엔티티와 db 사이에 존재
+    - 1차 캐시 (아래 상태로 보관)
+    ```
+    key(@id)             value(Entity)
+    memberId(pk)         Member(객체)
     
+    Member객체 조회시
+    -> 1. 영속성 컨텍스트 캐시에 객체 존재여부 확인
+    -> 2. 존재 시 결과값 반환(db접근X) -> 속도 향상
+    -> 3. 캐시에 없을 시 db에 접근
+    -> 4. 1차 캐시에 해당 객체 등록 후 결과값 
+    ```
+  - 변경감지(dirtyChecking / 엔티티수정)
+  ```
+  Member member = new Member(1L, "JPA"); // 비영속상태
+  em.persist(member); // 영속화
+  em.commit(); // db에 저장(jpa에서 쿼리 작성)
+  
+  member.setName("JAVA"); // 기존 멤버객체값 수정
+  em.persist(member) -> 불필요
+  )))자바 컬렉션 사용 시 수정 후 다시 저장하지 않음 으로 이해
+  ```
+  - 
+
+
+*. 엔티티 생명주기?
+  - 
+  1. 비영속 상태
+    ```
+    Member member = new Member();
+    member.setId(1L);
+    member.setName("JPA");
+    ```
+  2. 영속상태
+        ```
+    Member member = new Member();
+    member.setId(1L);
+    member.setName("JPA");
+    +
+    EntityManager em = emf.createdEntityManager();
+    em.getTransaction.began();
     
+    em.persiste(member);
+    
+    -> 영속성 컨텍스트 내 member객체 등록 
+    ```
+         
