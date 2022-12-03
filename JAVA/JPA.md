@@ -128,4 +128,45 @@
     - 
     
     
+*. **연관관계 매핑**?
+  - 
+  - Member 객체와 Order 객체가 있다고 했을 때...
+  ```
+  1. Order order = em.find(Order.class, 1L);
+  2. Long targetId = order.getMemberId(1L);
+  3. Member member = em.find(Member.class, targetId);
+    -> Order 객체에서 memberId를 찾고 그 memberid로 Member객체에 유저를 찾음(**관계형 db에 맞춘 설계**)
+
+  1.  Order order = em.find(Order.class, 1L);
+  2.  Member member = order.getMember(1L);
+    -> Order 객체에서 Member 객체 호출(**객체지향적 설계**)
+  ```
+  - 단방향 연관관계 매핑
+  ```
+  매핑 이전
+  public class Member{
+  
+  private Long id;
+  private String name;
+  private Long teamid;
+  }
+  
+  public class Team{
+  
+  private Long id;
+  private String name;
+  }
+  
+  단방향 매핑 이후
+  private Long id;
+  private String name;
+  ~~private Long teamid~~;
+  @ManyToOne
+  @JoinColumn(name = "team_id")  //컬럼 네임에 pk값 입력
+  private Team team;
+  }
+  
+  ```
+  
+    
          
