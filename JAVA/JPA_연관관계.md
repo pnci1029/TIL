@@ -1,4 +1,8 @@
 
+*. 다대일 연관관계?
+  - 
+  - 다 쪽 테이블이 연관관계의 주인
+  
 *. 양방향 연관관계?
   - 
   - ㅁㅁㅁ
@@ -92,4 +96,34 @@
   
   - 단방향 매핑만으로 연관관계 설정이 사실상 완료 (1:N일 때 N(연관관계 주인)에 참조할 객체 컬럼 생성 완료)
     - 단방향 <-> 양방향 둘 다 DB에 영향X
+  
+
+*. 일대일 연관관계?
+  - 
+  ```
+  public class Member{
+  @Id @GeneratedValue @Column(name ="member_id")
+  private Long id;
+  private String name;
+  @OneToOne @JoinColumn(name = "locker_id")
+  private Locker locker;
+  }
+  
+  public class Locker{
+  @Id @GeneratedValue @Column(name ="locker_id")
+  private Long id;
+  private String name;
+  }
+  ```
+  - 일대일 연관관계 시    주 테이블외래키      vs      대상테이블 외래키
+  ```
+        객체지향 개발자 선호                          데이터베이스 개발자 선호
+  장점  주 테이블에서 바로 대상테이블 호출            일대일 연관관계에서 일대다 연관관계로 변경 시 테이블 구조 유지 가능
+  단점  대상 테이블에 데이터가 없을 시 null값 호출    지연로딩 설정해도 즉시로딩 설정으로 db 호출
+  
+        주 테이블에서 바로 대상테이블 조회 가능  <->  (주 테이블(Member)에서 대상테이블을 조회하기위해 대상테이블에서 외래키를 참조하여
+            (지연로딩 사용)                           주 테이블을 조회하는 쿼리를 날려야함)
+          **수정예**
+  ```
+  
   
