@@ -26,3 +26,59 @@
      6. target에 실제 getName 등록
      7. 반환 
 
+*. 지연로딩과 즉시로딩?
+  - 
+  - 지연로딩 - 조회시 프록시 객체로 조회함(db접근 X)
+  ```
+  <Member>객체
+  private Long id;
+  private String name;
+  **
+  @ManyToOne(fetch = FetchType.LAZY)
+  **
+  @JoinColumn(name = "team_id")
+  private Team team;
+  
+  <Team>객체
+  private Long id;
+  private String name;
+  **
+  @OneToMany(mappedBy = "team")
+  **
+  private List<Member> member;
+  
+  멤버객체에서 fetch타입을 지연로딩으로 설정
+  
+  
+  
+  **결과 확인**
+  
+  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ데이터 입력ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  Team team = new Team();
+  team.setName("teamA");
+  
+  Member member = new Member();
+  member.setName("memberA");
+  member.setTeam(team);
+  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ데이터 입력ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  
+  em.persist(member);
+  
+  Member target = em.find(Member.class, 1L);
+
+  target.getTeam.getClass -> 조회 시 프록시 객체 조회
+  target.getTeam.getName  -> 프록시 객체 초기화 후 실제 엔티티객체에서 조회
+  
+  ```
+  - 즉시로딩 vs 지연로딩
+    - 지연로딩 -> 프록시 객체 생성 후 호출 시 초기화 후 조회  
+      - Member 객체 조회 시 쿼리가 1번 나감(Member(엔티티) + Team (프록시))
+      - Member에서 Team 객체 조회 시 쿼리가 2번 나감(Member(엔티티) + Team(프록시 -> 초기화))  
+    - 즉시로딩 -> 연관관계에 있는 객체 모두 조회
+      - Member 객체 조회 시 쿼리 한번에 Member + Team 조회 (Member + Team 객체가 동시에 쓰일 때 사용 권장)
+
+
+
+
+
+
