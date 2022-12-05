@@ -126,4 +126,77 @@
           **수정예**
   ```
   
-  
+*. 상속관계 매핑
+  - 
+  - 조인전략
+    - 상속관계의 객체들을 @Inheritance 어노테이션을 사용하여 db에서도 상속관계를 매핑
+    ```
+    @Inheritance(strategy = InheritanceType.Joined)
+    @Entity
+    public class item{   // 부모클래
+    }
+    ```
+
+
+
+*. @MappedSuperClass ?
+ - 
+ - 상속관계매핑 X   엔티티X -> 테이블과 매핑XXXXX
+ - 조회 or 검색 불가 -> 직접 조회할 일이 없으므로 추상클래스 권
+ - 엔티티들 사이에 공통된 컬럼이 필요할 때 공통된 매핑 정보만 필요로할때 사용
+ ```
+ ex)
+ 사용 전
+ <Member> 객체
+ @Entity
+ public class Member{
+ private Long id;
+ private String name;
+ 
+ private String createdBy;
+ private LocalDateTime creadAt;
+ private String modifiedBy;
+ private LocalDateTime modifiedAt;
+ }
+ 
+ <Team> 객체
+ @Entity
+ public class Team{
+ private Long id;
+ private String name;
+ 
+ private String createdBy;
+ private LocalDateTime creadAt;
+ private String modifiedBy;
+ private LocalDateTime modifiedAt;
+ }
+ 
+ 사용 후
+ <BaseEntity>객체
+ @MappedSuperclass 
+ public class BaseEntity{
+ private String createdBy;
+ private LocalDateTime creadAt;
+ private String modifiedBy;
+ private LocalDateTime modifiedAt;
+ }
+ 
+ <Member> 객체
+ public class Member extends BaseEntity{
+ private Long id;
+ private String name;
+ 
+ }
+ 
+ <Team> 객체
+ @Entity
+ public class Team extends BaseEntity{
+ private Long id;
+ private String name;
+ }
+ ```
+  - aa
+
+
+
+
