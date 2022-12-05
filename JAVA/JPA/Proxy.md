@@ -76,6 +76,7 @@
       - Member에서 Team 객체 조회 시 쿼리가 2번 나감(Member(엔티티) + Team(프록시 -> 초기화))  
     - 즉시로딩 -> 연관관계에 있는 객체 모두 조회
       - Member 객체 조회 시 쿼리 한번에 Member + Team 조회 (Member + Team 객체가 동시에 쓰일 때 사용 권장)
+      - sql 조인해서 쿼리한번에 조
 
 
 
