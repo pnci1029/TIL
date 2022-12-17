@@ -65,10 +65,33 @@
             memberService         return MemoryMemberRepository
     
       
-      
-      
+        
+        
+      #  
+      #  
+      #
 *. 스프링컨테이너?
   - 
   -  파라미터로 넘어온 설정클래스(appconfig)를 사용해 스프링 빈 등록, 보관
   -   * 싱글턴 컨테이너 (JVM 안에 각 객체는 하나씩만 존재 가)
-      
+  - 스프링 컨테이너 생성과정
+    1. 스프링 컨테이너 생성(AppConfig.Class)
+    2. 스프링 컨테이너 내 (key(빈 이름) : value(반환 인스턴스 객체)) 형식으로 빈 등록
+    ```
+    ex)
+    @Bean
+    public MemberSertvice memberService(){
+      return new MemberServiceImpl(memberRepository);         -> key(memberSertivce) : value(MemberServiceImpl);
+    }
+    @Bean
+    public MemberRepository memberRepository(){
+      return new JPARepository();                             -> key(memberRepository) : value(JPAReppsitory);
+    }
+    ```
+    3. 스프링 컨테이너 내 빈 의존관계 등
+    
+    
+    
+    
+    
+    
