@@ -56,20 +56,47 @@
  
 *. Configuration vs Component vs Bean?
   -
-  - Bean
+  - @Bean
     - 주로 메소드 상단에 @Bean 부여
       어플리케이션 실행 시 스프링 컨테이너에 해당 메소드의 **반환객체**가 등록됨
         -> 스프링 컨테이너에 아래 형식으로 관리
-        
+        ```
             메소드 명(key)        반환객체(value)
             memberService         return MemoryMemberRepository
-    
-      
+        ```  
+        #  
+        #  
+        #
+  - @Configuration
+    - 클래스 단위에 붙는 어노테이션
+    - 빈 어노테이션이 붙은 메소드들을 가짐
+    - @Configuration 클래스 내부에 있는 빈들을 싱글톤 상태를 유지하도록 함
+      1. 스프링이 cglib이라는 바이트코드를 조작하는 라이브러리를 사용
+      2. AppConfig 클래스를 상속받는 AppConfigcglib 클래스를 만들어 반환
+      3. ![configuration](https://user-images.githubusercontent.com/81909140/208280489-f80da711-384b-4fff-a62a-a97b0dffd701.png)
+    - @Configuration 없이 클래스 내부에 @Bean 메소드만 존재한다면?
+      - 빈 객체들이 싱글톤 보장이 되지않는다.
+      ```
+      ex)
+      1. 빈이 존재하지않을경우 -> 빈 생성
+      2. 빈이 존재할 경우      -> 존재하는 빈 객체 반환
+      3. 싱글톤 패턴 유지
+      ```
+    - 주의사항
+      - @Configuration 클래스는 final 이 되면 안된다. 
+      - @Bean 메소드는 final / private 이 되면 안된다. 
         
         
-      #  
       #  
       #
+  - @Conponent
+    - 프로젝트 시작 시점에 @Component 어노테이션이 붙은 클래스들을 빈으로 등록 
+      - 그렇다면 스프링 컨테이너 내에 있는 빈들간 의존성 주입은 어떻게?
+      ```
+      1. @Autowired 사용
+       -> 컴포넌트 클래스의 생성자에 해당 어노테이션을 추가함으로써 자동 의존성 주입 
+      ```
+    - @ComponentScan 시 @Configuration, @Controller, @Service, @Repository 등과 같은 어노테이션이 붙은 클래스들을 자동으로 스프링 컨테이너에 빈으로 등록 
 *. 스프링컨테이너?
   - 
   -  파라미터로 넘어온 설정클래스(appconfig)를 사용해 스프링 빈 등록, 보관
