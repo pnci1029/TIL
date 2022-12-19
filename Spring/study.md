@@ -48,6 +48,16 @@
  
 *. 빈 생명주기?
   - 
+  - 스프링 컨테이너 생성 - 빈 등록 - 의존관계 주입 - 초기화 콜백 - 빈 사용 - 소멸전 콜백 - 스프링 종료
+  - 스프링에서 초기화 / 소멸전 콜백 지원 방법
+    1. 인터페이스(InitializingBean, DisposableBean)
+      - InitializingBean, DisposableBean 인터페이스 상속받아 사용  
+    2. 설정 정보에 지정
+      - @Bean(initMethod = "init", destroyMethod = "close") 
+    3. @PostConstruct, @PreDestroy 어노테이션 사용 
+      - 가장 권장되는 방법
+      - 스프링에 종속되는 기술이 아니고 자바 표준 기술 
+      - 다만 외부 라이브러리에서 사용 불가 
  
  
 *. IOC와 DI
