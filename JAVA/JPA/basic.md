@@ -30,14 +30,14 @@
 *. JPA 사용 이유?
   -
   - **ORM을 통한 객체와 RDB 매핑** (정적상태)
-    - 선 테이블 생성 -> 후 객체 생성     -> 객체중
+    - 선 테이블 생성 -> 후 객체 생성     -> 객체중심
   - **영속성 컨텍스트** (정적상태)
   - SQL dialect 제공
   - 동일한 트랜잭션내 엔티티의 동일성 보장
     ```
     String memberId = "100";
     Member member1 = jpa.find(Member.class, memberId)  -> SQL을 통한 조회
-    Member member2 = jpa.find(Member.class, memberId)  -> 캐싱된 메모리에서 조회 (성능 향)
+    Member member2 = jpa.find(Member.class, memberId)  -> 캐싱된 메모리에서 조회 (성능 향상)
     
     member1 == member2
     ```
@@ -46,7 +46,7 @@
 *. 지연로딩        vs      즉시로딩?
   - 
   - 즉시로딩 -> DB 접근 SQl 요청 시 연관관계 매핑된 모든 테이블 데이터 조회
-  - 지연로딩 -> SQL 요청 시 테이블 조회가 필요한 DB만 접
+  - 지연로딩 -> SQL 요청 시 테이블 조회가 필요한 DB만 접근 
   ```
   지연로딩  member.getMember(memberId)     -> Select * FROM Member
             member.getTeam(memberid)       -> Select * FROM Member
@@ -117,7 +117,7 @@
     em.persiste(member);
     
     -> 영속성 컨텍스트 내 member객체 등록 
-    ```
+      ```
   3. 준영속상태
     - 
     - 영속성컨텍스트에 있는 객체들이 1차캐시에서 분리된 상태 (영속성 컨텍스트의 기능을 제공받지못함 - 변경감지(dirtyChecking )) 
