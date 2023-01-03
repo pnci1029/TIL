@@ -24,4 +24,23 @@
     - fetchOne() : 단 건 조회 / 결과가 없으면 : null / 결과가 둘 이상이면 : com.querydsl.core.NonUniqueResultException 발생
     - fetchFirst() : limit(1).fetchOne()
     - fetchResults() : 페이징 정보 포함, total count 쿼리 추가 실행
-    - fetchCount() : count 쿼리로 변경해서 count 수 조회
+    - fetchCount() : count 쿼리로 변경해서 count 수 조회. 
+#. 
+#. 
+# 동적쿼리 처리방법
+  - booleanExpression을 활용한 where 절 활용
+  ```
+  public BooleanExpression articleEq(String articleName){
+    return username != null ? QArticle.name.eq(username) : null;
+  }
+  
+  public BooleanExpression commentEq(String commentName){
+    return commentName != null ? QComment.name.eq(commentName) : null;
+  } + 
+  public BooleanExpression articleAndComment(String articleName, String commentName){
+    return QArticle.name.eq(articleName).andQComment.name.eq(commentName);
+  }
+  -> 모듈화가 가능하다.
+  ```
+
+
