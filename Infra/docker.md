@@ -47,6 +47,10 @@
 #. 
 #  
 #
+  - docker exec [container] [command]    ->  
+#. 
+#  
+#
 도커 이미지 리소스
 https://hub.docker.com/_/nginx
 
