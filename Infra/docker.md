@@ -43,4 +43,10 @@
 +  쿠버네티스 환경구축을위한 셋업
 - brew install kubectl
 - brew install kustomize
-- brew install minikube + minikube start --driver docker
+- brew install minikube + minikube start --driver docker. 
+#. 
+#  
+#
+도커 이미지 리소스
+https://hub.docker.com/_/nginx
+
