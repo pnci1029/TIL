@@ -47,11 +47,14 @@
   ```
   도커 컨테이너는 격리된 환경에서 동작하기때문에 다른 컨테이너와 통신이 불가능하다.
   하지만 다른 컨테이너와 네트워크 연결을 통해 통신이 가능하게 사용할 수 있다.
-  ```
-
-
   
-#  
+  컨테이너는 호스트 서버에서 각자의 프로세스로 실행됨
+  -> 각 컨테이너는 개별 네트워크망을 가진다(서로 다른 ip)
+  host <-> 컨테이너 (bridge를 통해 네트워킹) 컨테이너 <-> 컨테이너?
+  ```  
+  #  
+
+
 #  
 # 도커 명령어
   - * 아래 명령어 수행 시 이미지가 없을경우 먼저 pull 받고 해당 명령어 수행 
@@ -67,7 +70,7 @@
   - ctrl + p + q -> 종료하지않고 명령어 입력
   - docker run -d [container] -> docker run [container]로 실행하면 foreground로 바로 실행되지만, 데몬(d)로 실행 시 백그라운드로 실행
     - ps로 검색 시 조회되며 다른명령어 실행 가능
-    - docker run -d --name my-test -nginx -> 백그라운드에 my-test란 이름의 nginx 이미지 실행
+    - docker run -d --name my-test -nginx -> 백그라운드에 my-test란 이름의 nginx 컨테이너 실행
   - docker run -p 80(호스트 포트):80(컨테이너 포트) nginx -> nginx 포트번호가 80이라 컨테이너포트에 80 기입
     - curl localhost:80 을 통해 80번 호스트 포트에 nginx 실행확인
 
