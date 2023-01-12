@@ -53,6 +53,13 @@
   host <-> 컨테이너 (bridge를 통해 네트워킹) 컨테이너 <-> 컨테이너?
   ```  
   #  
+  - <img width="642" alt="스크린샷 2023-01-12 오후 9 57 05" src="https://user-images.githubusercontent.com/81909140/212072319-6e91d386-ce52-4bb8-8e89-a2b50ce6e472.png">
+  - Host
+    - eth0 : 호스트 서버에서 사용하고 있는 private IP 값
+    - docker0 : 도커 데몬에 의해 생성되는 기본 bridge network, 호스트의 eth0과 컨테이너의 veth 사이를 연결해주는 브릿지 역할
+  - Container
+    - eth0 : 호스트와 연결하기 위한 컨테이너의 ip 값
+    - veth : 가상 eth로, 컨테이너의 eth 생성과 함께 브릿지 네트워크와 연결하기 위해 생성되는 가상 eth
 
 
 #  
