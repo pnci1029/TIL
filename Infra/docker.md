@@ -9,7 +9,12 @@
   - 이미지와 컨테이너는 1:N 관계
   - 이미지는 컨테이너를 실행시키기 위해 필요한 요소
   - 각 컨테이너에 목적에 맞는 바이너리와 의존성이 설치되어있음
-  - 계층구조 
+  - 계층구조(layer)
+  - <img width="1649" alt="스크린샷 2023-01-14 오후 1 00 20" src="https://user-images.githubusercontent.com/81909140/212449801-8561573b-9663-4070-9492-5f8f566b32c3.png">
+    - docker image inspect ubuntu 
+  - <img width="1285" alt="스크린샷 2023-01-14 오후 1 00 58" src="https://user-images.githubusercontent.com/81909140/212449813-8fb1968d-ade1-47ec-818d-b1f323aa9573.png">
+  - 레이어들은 해시값으로 저장되어있음
+
   
 #
   ## 컨테이너
