@@ -91,6 +91,38 @@
   
   WORKDIR /app.      -> working directory 경로 지정 (리눅스 cd 와 같다고 이해)
   ```
+#. 
+#. 
+# 도커 허브를 이용한 저장소 활용
+  - 도커 허브에 리포 생성 
+  - 리눅스에 도커 로그인
+  - docker tag nginx chhong/my-nginx -> 로컬에 있는 nginx를 도커 리포에 있는 my-nginx에 태깅
+  - <img width="1140" alt="스크린샷 2023-01-17 오후 11 46 52" src="https://user-images.githubusercontent.com/81909140/212929433-6a263131-c2ca-4ffc-af3f-7fa5c5aa2a8e.png">
+  - docker push chhong/my-nginx  도커 풀을 통해 도커 허브 리포에 저장
+  - <img width="1246" alt="스크린샷 2023-01-17 오후 11 48 50" src="https://user-images.githubusercontent.com/81909140/212929925-7fe1677b-aaab-4f91-aa9f-5940722e6d11.png">  
+#  
+#  
+# 도커 컴포즈?
+  - 단일 서버에서 여러개의 컨테이너들을 프로젝트 단위로 묶어서 관리
+    - docker-compose.yml yaml 파일을 통해 명시적으로 관리
+    - 프로젝트 내 볼륨과 네트워크 관리
+    - version / service / networks / volume 4개의 최상위 옵션
+      - version : 도커 컴포즈 버전. 가급적 최신버전 사용 권장
+      - service : 프로젝트를 구성하는 서비스들을 서브키들을 이용하여 관리(ex) web , database)
+      - networks / volumes : 프로젝트 마다 독립되어 구성
+    - ㅁㅁ
+  ## 사용 목적
+  - 로컬 개발환경 구성
+    (Redis, MySQL 등 의존성 관리에 매우 유리)
+  - 단일 서버 컨테이너 관리 시 yaml 파일을 통해 선언적으로 관리
+  ## 도커 컴포즈 명령어
+  - docker-compose ps 프로세스 중인 도커컴포즈 조회
+  - docker-compuse up 이미지 빌드 후 도커컴포즈 실행 (docker run 으로 이해)
+  - docker-compose down -v 도커 컨테이터 / 네트워크 / 볼륨 종료 및 제거
+    - service (docker run 명령어에서 제공하는 옵션들)
+    - <img width="482" alt="스크린샷 2023-01-18 오전 12 35 04" src="https://user-images.githubusercontent.com/81909140/212941495-3bacc9ee-55cf-4ae3-91eb-725bca730fcd.png">
+
+
 
 
 
