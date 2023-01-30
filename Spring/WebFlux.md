@@ -9,4 +9,20 @@
   Spring MVC                    Spring WebFlux
   - Sync - Blocking 방식         - Async - Non Blocking 방식
   - Thread Pool 요청처리 방식      - Event-Driven 요청처리 
-```
+```   
+#  
+#  
+## MVC vs WebFlux?
+  - Spring MVC
+    - ![springMVC](https://user-images.githubusercontent.com/81909140/215487718-e96f6a23-93b7-4677-9010-f7f3b5c9ec32.png)
+    - One Request Per Thread Model (스레드 풀이 수용할 수 있는 만큼 클라이언트의 요청을 처리하고 나머지는 큐에서 대기)
+      - 요청 규모에 따른 스레드 풀 사이즈 조정이 중요
+    - 많은 사용자가 동시에 요청할 경우 Thread Pool Hell 현상 발생(큐에 대기가 쌓여 전체 대기시간이 증가하는 현상)
+    - 동기적으로 처리하는 블로킹 방식
+  
+#  
+  - Spring WebFlux
+    - 비동기적으로 처리하는 논블로킹 방식
+      - 논블로킹을 통해 적은 수의 리소스로 동시성 처리
+    - 반응형 프로그래밍
+
