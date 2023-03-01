@@ -1,6 +1,9 @@
 ## vs Spring Framework
 #### 내장서버
   - 톰캣 내장
+<img width="804" alt="스크린샷 2023-03-01 오후 7 38 17" src="https://user-images.githubusercontent.com/81909140/222116852-9a1ac75b-68f1-47fa-b841-4e20583ca00b.png">
+  - 외장서버와 내장서버
+
 #### 라이브러리 관리
   - 손쉬운 빌드 구성을 위한 스타터 종속성 제공
   - 외부 라이브라리 버전 자동관리
