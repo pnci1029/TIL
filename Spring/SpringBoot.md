@@ -1,8 +1,30 @@
 ## vs Spring Framework
 #### 내장서버
-  - 톰캣 내장
+  - 톰캣 내장서버와 외장서버
 <img width="804" alt="스크린샷 2023-03-01 오후 7 38 17" src="https://user-images.githubusercontent.com/81909140/222116852-9a1ac75b-68f1-47fa-b841-4e20583ca00b.png">
-  - 외장서버와 내장서버
+
+  ```
+  WAR 와 JAR
+  JAR
+  자바는 여러 리소스와 클래스들을 묶어 JAR(JAVA ARCHIVE) 라고 하는 압축파일로 만들 수 있다.
+  - 이 JAR 파일은 JVM위에서 실행하거나 또 다른곳에서 라이브러리로 사용된다.
+  - 직접 사용하는 경우 `main()` 메소드가 필요하며, `MANIFEST.MF` 파일에 메인메소드가 있는 클래스를 지정해두어야한다.
+  
+ `  ex) java -jar abc.jav`
+  
+  WAR
+  WAR(WEB Application Archive)는 웹 어플리케이션서버(WAS)에 배포할 때 사용하는 파일이다.
+  - JAR가 JVM 위에서 실행되는 반면 WAR는 웹어플리케이션 서버 위에서 실행된다.
+  - 웹어플리케이션 위에서 실행되고, html과 같은 정적리소스와 리소스들과 클래스를 포함하기 때문에 JAR와 비교하여 구조가 더 복잡하다
+  - 또한 구조를 지켜야한다.
+  
+  WAR 구조 WEB-INF
+  classes : 실행 클래스 모음
+  lib : 라이브러리 모음
+  web.xml : 웹 서버 배치 설정 파일(생략 가능)
+  index.html : 정적 리소스
+  WEB-INF 폴더 하위는 자바 클래스와 라이브러리, 그리고 설정 정보가 들어가는 곳이다. WEB-INF 를 제외한 나머지 영역은 HTML, CSS 같은 정적 리소스가 사용되는 영역이다.
+  ```
 
 #### 라이브러리 관리
   - 손쉬운 빌드 구성을 위한 스타터 종속성 제공
