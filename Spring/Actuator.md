@@ -30,6 +30,49 @@ management:
 #  
 ## 자주사용하는 Actuator의 엔드포인트들
 #### <<<<health, info, logger, httpexchanges, metrics,>>>> beans, configprops, mapping, env, threaddump, shutdown
+#  
+#  
+### health
+  - 어플리케이션 요청 동작여부 확인
+  - 데이터베이스 여부 확인
+  - 디스크 사용량 문제 여부 확인
+```
+  ""yml에 health - detail 활성화 후 확인가능""
+
+  "status": "UP",
+  "components": {
+    "db": {
+      "status": "UP",
+      "details": {
+        "database": "H2",
+        "validationQuery": "isValid()"
+      }
+    },
+    "diskSpace": {
+      "status": "UP",
+      "details": {
+        "total": 994662584320,
+        "free": 869734965248,
+        "threshold": 10485760,
+        "exists": true
+      }
+    },
+    "ping": {
+      "status": "UP"
+    },
+    "redis": {
+      "status": "UP",
+      "details": {
+        "version": "7.0.8"
+      }
+    }
+  }
+```
+### info
+  - java 버전 / OS 정보 노출 (yml 설정 추가 필요)
+  - build (build.gradle 추가 필요) - 빌드정보(빌드 시간, 버전, 이름 ...)
+  - git 정보 노출
+  - 어플리케이션 기본정보 노출
 #### 'beans'
   - 스프링 컨테이너에 등록된 빈 조회
 ```
