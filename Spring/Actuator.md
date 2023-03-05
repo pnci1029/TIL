@@ -73,6 +73,54 @@ management:
   - build (build.gradle 추가 필요) - 빌드정보(빌드 시간, 버전, 이름 ...)
   - git 정보 노출
   - 어플리케이션 기본정보 노출
+```
+{
+  "app": {
+    "name": "chhong",
+    "projectName": "myPro"
+  },
+  "git": {
+    "branch": "master",
+    "commit": {
+      "id": "asdasdsadas",
+      "time": "2023-03-04T14:00:29Z"
+    }
+  },
+  "build": {
+    "artifact": "pro",
+    "name": "pro",
+    "time": "2023-03-05T03:16:07.616Z",
+    "version": "0.0.1-SNAPSHOT",
+    "group": "com.example"
+  },
+  "java": {
+    "version": "11.0.17",
+    "vendor": {
+      "name": "asdasdasdsadsads",
+      "version": "Corretto-11.0.17.8.1"
+    },
+```
+### loggers
+  - /actuator/loggers/com.example.pro.controller 를 통해 컨트롤러 로그 레벨 실시간 확인 / 변경 가능
+  - yml에서 하위 로깅 경로를 지정해주어 로깅 레벨 설정
+  - 로거 레벨을 설정하지 않을 시 기본으로 'info' 레벨로 스프링에서 지정
+```
+  method : get
+  /actuator/loggers/com.example.pro.controller 요청 시 
+{
+  "configuredLevel": "DEBUG",
+  "effectiveLevel": "DEBUG"
+} 현재 로그 레벨 확인
+
+  method : post
+  /actuator/loggers/com.example.pro.controller 요청 시 
+  body - json 
+{
+  "configuredLevel" : Trace 
+} 요청 시 현재 로그 레벨 Debug -> Trace로 변환
+```
+### httpExchanges
+  - 
 #### 'beans'
   - 스프링 컨테이너에 등록된 빈 조회
 ```
