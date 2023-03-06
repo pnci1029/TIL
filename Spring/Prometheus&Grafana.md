@@ -23,3 +23,15 @@ implementation 'io.micrometer:micrometer-registry-prometheus'
 ->
 /actuator 내 prometheus 추가됨
 ```
+## 프로메테우스 설치파일의 prometheus.yml 에 스크립트 추가
+  ```
+   - job_name: "spring-actuator"
+        metrics_path: '/actuator/prometheus'
+        scrape_interval: 1s
+        static_configs:
+  - targets: ['localhost:8080']
+  
+  저장 후 터미널에서 다시 실행 -> http://localhost:9090/config 설정 스크립트 추가 확인가능
+  ```
+  
+  
