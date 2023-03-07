@@ -12,7 +12,7 @@
   3. 프로메테우스는 수집된 정보를 db에 저장
   4. 그라파나는 프로메테우스에서 수집된 정보들을 조회하여 그래프로 표현
   ```
-## 프로메테우스 설정
+# 프로메테우스 설정
   1. 어플리케이션 설정 : 어플리케이션 메트릭 정보를 가져올 수 있도록 어플리케이션에서 프로메테우스 설정에 맞춰 메트릭 생성
   2. 프로메테우스 설정 : 프로메테우스가 어플리케이션의 메트릭을 주기적으로 수집하도록 설정
 ```
@@ -33,5 +33,16 @@ implementation 'io.micrometer:micrometer-registry-prometheus'
   
   저장 후 터미널에서 다시 실행 -> http://localhost:9090/config 설정 스크립트 추가 확인가능
   ```
+#  
+### 프로메테우스 이용
+  - <img width="1711" alt="스크린샷 2023-03-07 오후 11 15 36" src="https://user-images.githubusercontent.com/81909140/223448222-aba4ecc2-a5c0-4f34-bcc8-e9a1364245bd.png">
+  - 단위시간당 요청 수 파악
+  - <img width="1710" alt="스크린샷 2023-03-07 오후 11 15 48" src="https://user-images.githubusercontent.com/81909140/223448252-f6a2d71c-20ca-4e8c-abc9-421cc1c8e937.png">
+  - 단위시간당 요청 수 그래프로 시각화
+  ```
+  http_server_requests_seconds_count -> 단위시간당 요청 수 파악
+  http_server_requests_seconds_count{uri="/article/log"} -> 특정 uri에 대한 요청 수 파악
   
+  ```
+
   
