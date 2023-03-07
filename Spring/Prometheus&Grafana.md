@@ -43,6 +43,38 @@ implementation 'io.micrometer:micrometer-registry-prometheus'
   http_server_requests_seconds_count -> 단위시간당 요청 수 파악
   http_server_requests_seconds_count{uri="/article/log"} -> 특정 uri에 대한 요청 수 파악
   
+  자주쓰는 레이블 함수와 쿼리
+  
+  sum(http_server_requests_seconds_count)
+  sum by(method, status)(http_server_requests_seconds_count) SQL의 group by 기능과 유사
+  count(http_server_requests_seconds_count)
+  topk(3, http_server_requests_seconds_count) 상위 3개 메트릭 조회
+  http_server_requests_seconds_count offset 10m  10분전 요청 조회
+  
   ```
+### 프로메테우스의 게이지와 카운터
+##### 게이지
+  - 임의로 오르내릴수 있는 값
+  - CPU사용량, 메모리사용량, db 커넥션 수
+  ```
+  system_cpu_usage CPU 사용량 조회
+  ```
+  - <img width="1708" alt="스크린샷 2023-03-07 오후 11 46 15" src="https://user-images.githubusercontent.com/81909140/223456509-ed179669-7cf9-451d-8d0c-79eebc656d34.png">
+#  
+#  
+#### 카운터
+  - 단순하게 증가하는 누적 값
+  - HTTP 요청 수, 로그 발생 수
+<img width="1721" alt="스크린샷 2023-03-07 오후 11 54 26" src="https://user-images.githubusercontent.com/81909140/223458849-c4d7b01e-fe9f-4a54-8984-411c348d9db8.png">
+
+  ```
+  카운터는 계쏙해서 증거하는 그래프 형태라, 특정시간에 요청이 많은지 한눈에 파악하기가 어려움
+  -> increase(), range() 함수 사용
+  ```
+  - increase() 함수 사용
+
+<img width="1708" alt="스크린샷 2023-03-07 오후 11 54 17" src="https://user-images.githubusercontent.com/81909140/223458970-2826d9d3-2972-466e-8574-9d353c9d2227.png">
+
+
 
   
