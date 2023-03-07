@@ -74,6 +74,13 @@ implementation 'io.micrometer:micrometer-registry-prometheus'
   - increase() 함수 사용 -> (기존 우상향 그래프 ->시간대별로 http 요청 수 파악)
 <img width="1708" alt="스크린샷 2023-03-07 오후 11 54 17" src="https://user-images.githubusercontent.com/81909140/223458970-2826d9d3-2972-466e-8574-9d353c9d2227.png">
 
+#  
+#  
+#  
+# 그라파나
+  - 톰캣 실행 - 프로메테우스 실행(터미널 9090) - 그라파나 실행(터미널 3000)
+
+
 
 
   
