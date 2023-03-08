@@ -102,5 +102,11 @@ implementation 'io.micrometer:micrometer-registry-prometheus'
   ```
 # https://grafana.com/grafana/dashboards 그라파나 대시보트
   - 반드시반드시 그라파나 대시보드 수정이나 임포트 시 저장할것
+#  
+#  
+## 그라파나로 실제 문제상황 관측
+```
+1. cpu 사용 이슈
+2. 메모리 이슈
 
-  
+```
