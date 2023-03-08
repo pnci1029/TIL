@@ -100,7 +100,7 @@ implementation 'io.micrometer:micrometer-registry-prometheus'
 
 해당값들도 추가가 가능하나 그라파나에서 만들어 둔 대시보드를 사용하면 된다
   ```
-
-
+# https://grafana.com/grafana/dashboards 그라파나 대시보트
+  - 반드시반드시 그라파나 대시보드 수정이나 임포트 시 저장할것
 
   
