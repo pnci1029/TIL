@@ -6,6 +6,7 @@
   - [SINGLETONE PATTERN](https://github.com/pnci1029/TIL/blob/main/JAVA/DesignPattern.md)
   - [SERIALIZATION](https://github.com/pnci1029/TIL/blob/main/JAVA/Serialization.md)
   - [STREAM](https://github.com/pnci1029/TIL/blob/main/JAVA/Stream.md)
+  - [ENUM](https://github.com/pnci1029/TIL/blob/main/JAVA/Enum.md)
   #### JPA
   - [QUERYDSL](https://github.com/pnci1029/TIL/blob/main/JAVA/JPA/QueryDSL.md)
   - [연관관계](https://github.com/pnci1029/TIL/blob/main/JAVA/JPA/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84.md)
@@ -22,6 +23,7 @@
   - [SPRING ACTUATOR](https://github.com/pnci1029/TIL/blob/main/Spring/Actuator.md)
   - [SPRING ACTUATOR&MATRICS](https://github.com/pnci1029/TIL/blob/main/Spring/Actuator_Metrics.md)
   - [MICROMETER](https://github.com/pnci1029/TIL/blob/main/Spring/MicroMeter.md)
+  - [FILTER&INTERCEPTER](https://github.com/pnci1029/TIL/blob/main/Spring/Filter%26Intercepter.md)
 
 #  
 ### OPERATING SYSTEM
