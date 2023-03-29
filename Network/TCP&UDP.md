@@ -19,6 +19,8 @@ Network Acess Layer           - 인터넷, 이더넷
   3. 데이터 송 수신
   4. 4 Way HandShake (연결 종료)
 
-  ```
-  Q. www.google.com을 입력 시 발생하는 일..
-  ```
+
+  ## Q. www.google.com을 입력 시 발생하는 일..
+  1. HTTP 요청 발생 <img width="451" alt="스크린샷 2023-03-29 오후 11 50 56" src="https://user-images.githubusercontent.com/81909140/228578302-78a7073f-953b-46f1-93e5-3963f4932d96.png">  
+
+
