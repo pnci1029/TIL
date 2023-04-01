@@ -37,7 +37,15 @@
   ```
   - <img width="700" alt="스크린샷 2023-04-01 오후 1 27 40" src="https://user-images.githubusercontent.com/81909140/229265564-c63316be-e4dc-4f9a-b8cd-0b34fb2e3560.png">
   ```
-    was -> filter
+  일반적인 흐름
+    was -> filter(Dispatcher Servlet) -> preHandle ->
+    Handler Adapter -> Model&View return ->
+    postHandle(Model&View 포함) -> Model 호출 -> after Completion
+    
+  스프링 인터셉터 예외 발생
+    was -> filter(Dispatcher Servlet) -> preHandle ->
+    Handler Adapter -> Model&View return ->
+    예외 전달 -> was
   ```
 
   
