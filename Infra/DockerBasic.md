@@ -40,6 +40,14 @@
   
   4. 도커 푸시
   docker push dockerId/test:1.0
+  + docker images ~> 새로운 이미지 생성됨
+  
+  5. 컨테이너 실행
+  docker run -d -p 8080:8080 이미지 명
+  + 컨테이너 확인 docker ps
+  + 로그 확인 docker logs 컨테이너 명
+  + 프로젝트 실행 확인 curl http://localhost:8080
+  
   ```
   - <img width="374" alt="스크린샷 2023-05-15 오후 10 19 00" src="https://github.com/pnci1029/TIL/assets/81909140/e9354c95-5479-4257-bcb3-5960a925941a">
 
