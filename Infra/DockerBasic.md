@@ -43,12 +43,42 @@
   + docker images ~> 새로운 이미지 생성됨
   
   5. 컨테이너 실행
-  docker run -d -p 8080:8080 이미지 명
+  docker run -d -p 8080:8080 repository name : tag (dockerId/test:1.0)
   + 컨테이너 확인 docker ps
   + 로그 확인 docker logs 컨테이너 명
   + 프로젝트 실행 확인 curl http://localhost:8080
   
   ```
   - <img width="374" alt="스크린샷 2023-05-15 오후 10 19 00" src="https://github.com/pnci1029/TIL/assets/81909140/e9354c95-5479-4257-bcb3-5960a925941a">
+#  
+#  
+#  
+# jib을 이용한 빌드
+  - build.gradle 에 스크립트 작성
+  - <img width="1224" alt="스크린샷 2023-05-18 오후 10 46 21" src="https://github.com/pnci1029/TIL/assets/81909140/95881770-53e2-4637-a700-04b493d4560b">
+  ```
+  도커데몬을 키지않은 상태에서 빌드
+  ```
+  - <img width="1464" alt="스크린샷 2023-05-18 오후 11 00 47" src="https://github.com/pnci1029/TIL/assets/81909140/9a659c9e-9423-4234-8f46-ba978247ce96">
+  ```
+  1. jar 파일 생성
+  ./gradlew clean build --info
+  2. jib 빌드
+  ./gradlew jib
+  
+  3. 도커데몬 실행하지않고 빌드 했기 때문에 로컬에- 도커 이미지가 없음
+    도커 데몬 실행 후 image pull 
+  ```
+  - <img width="557" alt="스크린샷 2023-05-18 오후 11 11 38" src="https://github.com/pnci1029/TIL/assets/81909140/4058feee-659c-40a1-a4c3-a39ead5d2bce">
+  ```
+  도커 이미지 체크
+  
+  도커 풀
+  ```
+  - <img width="982" alt="스크린샷 2023-05-18 오후 11 11 47" src="https://github.com/pnci1029/TIL/assets/81909140/b74227b6-ce40-4321-8534-382d7bf56d6a">
+  ```
+  잘 실행되는지 확인
+  docker run -d -p 8080:8080 -t repository name : tag (dockerId/test:1.0)
+  ```
 
   
