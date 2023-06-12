@@ -59,4 +59,23 @@
     * Sql Mapper, ORM 모두 내부적으로 JDBC 사용
     
   ```
+ #  
+ #  
+ ### 순수 JDBC와 DB 연결
+  - <img width="663" alt="스크린샷 2023-06-12 오후 10 50 28" src="https://github.com/pnci1029/TIL/assets/81909140/a1e80bd1-26c8-41e7-9d1c-2b1acd833499">
+  ```
+    JDBC는 자바 표준 Connection(java.sql.connection)(인터페이스)을 구현
+    H2 데이터베이스 드라이버는 JDBC Connection 인터페이스를 구현한 org.h2.jdbc.jdbcConnection을 제공
+    
+  ```
+  - DriverManager 커넥션 흐름
+  - <img width="645" alt="스크린샷 2023-06-12 오후 10 54 54" src="https://github.com/pnci1029/TIL/assets/81909140/c6db327d-9670-4601-baa5-bf85d1caa658">
+  ```
+     1. DB커넥션이 필요한 경우 자바에서 제공하는 DriverManager.getConnection(); 호출
+     2. DriverManager에서 라이브러리에 등록된 데이터베이스 자동 연결. 커넥션을 얻을 수 있는지 확인 후 DB 커넥션 제공
+      (인터페이스 : 자바 SQL Connection 구현체: 해당 DB 드라이버 구현체)
+     3. 이렇게 제공된 커넥션 구현체가 클라이언트에 반환
+  ```
+
+ 
 
