@@ -76,6 +76,39 @@
       (인터페이스 : 자바 SQL Connection 구현체: 해당 DB 드라이버 구현체)
      3. 이렇게 제공된 커넥션 구현체가 클라이언트에 반환
   ```
+#  
+#  
+### ResultSet
+  ```
+    try {
+          connection = getConnection();
+          preparedStatement = connection.prepareStatement(sql);
+          preparedStatement.setString(1, memberId);
+
+          rs = preparedStatement.executeQuery(); // ResultSet
+          if (rs.next()) {
+              Member member = new Member();
+              member.setMemberId(rs.getString("member_id"));
+              member.setMoney(rs.getInt("money"));
+              return member;
+          } else {
+              throw new NoSuchElementException();
+          }
+
+      } catch (SQLException e) {
+          log.error("error", e);
+          throw e;
+      } finally {
+          close(connection, preparedStatement, rs);
+      }
+  ```
+  - <img width="657" alt="스크린샷 2023-06-13 오후 10 16 49" src="https://github.com/pnci1029/TIL/assets/81909140/986994a7-f64f-41b9-b458-1602a3dd6436">
+  - 다음과 같이 생긴 자료구조
+    - ex) select member_id, member_name ~ 쿼리를 실행하면 `member_id`, `member_name`으로 resultSet에 저장됨
+  - resultSet 내부의 커서로 다음 데이터를 조회 (rs.next())
+  - 최초 한번이상 커서 이동을 해야 조회가 가능함
+    - rs.next()는 boolean을 반환타입으로 가지며, true이면 데이터가 있고, false 반환시 데이터가 없다는 의미
+
 
  
 
