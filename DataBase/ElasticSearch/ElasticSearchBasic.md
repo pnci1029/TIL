@@ -55,6 +55,32 @@
     discovery.type: single-node
     추가
   ```
+#  
+#  
+### 다중 노드 구성 설정
+  ```
+    cp -rf elasticsearch-7.15.0 es1
+    cp -rf elasticsearch-7.15.0 es2
+    cp -rf elasticsearch-7.15.0 es3
+
+    디렉토리에 같은버전 엘라스틱서치 3개 설치
+
+
+    es1/bin/elasticsearch -d -p PID
+    es2/bin/elasticsearch -d -p PID
+    es3/bin/elasticsearch -d -p PID
+    각 디렉토리의 엘라스틱서치 실행
+  ```
+  - <img width="922" alt="스크린샷 2023-06-21 오후 9 37 57" src="https://github.com/pnci1029/TIL/assets/81909140/2e007cfb-a1d8-411c-9399-e8bfe9ea94d8">
+  ```
+    3개의 노드에 별다른 설정없이 실행을 통해 클러스터 구성
+  ```
+#### 아무 설정이 없는데 어떻게 클러스터 구성이 되었을까?
+  - 엘라스틱 서치는 기본적으로 같은 클러스터 네임을 가진 같은 네트워크상의 노드들을 클러스터링 처리를 지원한다.
+# Dokcer Compose 를 이용힌 클러스터 노드 설정
+  ```
+    
+  ```
 
 #  
 #  
