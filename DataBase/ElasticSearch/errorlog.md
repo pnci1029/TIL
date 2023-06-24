@@ -10,3 +10,9 @@
   변경 후 실행
   ```
   - <img width="920" alt="스크린샷 2023-05-20 오후 4 58 25" src="https://github.com/pnci1029/TIL/assets/81909140/2ccb47bd-bfd5-4fb2-a44b-6d9eafb20810">
+#  
+#  
+#  
+#  2. Disk Full 로 인한 오류 발생
+  - 데이터가 용량의 80% 초과 시 워터마크 처리 감지
+  - <img width="922" alt="스크린샷 2023-06-24 오후 1 16 47" src="https://github.com/pnci1029/TIL/assets/81909140/7cd09616-960d-42b6-9b2b-3b8bb93c8642">
