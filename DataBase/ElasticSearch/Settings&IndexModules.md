@@ -53,13 +53,38 @@
 
     static 설정
       - shard를 통해 인덱스를 할당(allocation)하여 생성하는 인덱스
-        (http://localhost:9200/shard-allocation-00001)
+
+      요청 : http://localhost:9200/shard-allocation-00001
+      바디
+        {
+            "settings" : {
+                "index.number_of_shards": 0,
+                "index.number_of_replicas": 0,
+                "index.routing.allocation.require.tier": "hot"
+            }
+        }
+
+      - index.number_of_shards : 인덱스의 primary shard에 대한 크기 설정
+        - 인덱스당 최대 생성 가능한 shard의 크기는 1024
+
+
+
 
     dynamic 설정
       - 인덱스 설정 이후 shard에 Setting 이라는 명령을 통해 reAllocation이 적용된 인덱스
         (http://localhost:9200/shard-allocation-00001/_settings)
 
+      - index.max_result_window : 인덱스별 질의 결과에 대한 최대 결과값 노출 수 지정
+                                  이 설정값을 크게 잡을 경우 Heap 사용량이 증가되어 메모리 초과 에러가 날 수 있음
+                                  From + Size값으로 최대 10000까지 설정 가능
+
+          => 최대 값이 정해져있으므로, scroll / search After 기능 사용
+
   ```
+### 검색 질의 프로세스
+  - <img width="1437" alt="스크린샷 2023-06-24 오후 4 05 23" src="https://github.com/pnci1029/TIL/assets/81909140/6b51adb1-5f8b-484f-9a64-a68b3f086b4f">
+### Scroll / Search After
+  - <img width="1136" alt="스크린샷 2023-06-24 오후 4 08 23" src="https://github.com/pnci1029/TIL/assets/81909140/b0de530c-f905-4555-aa77-144121d17f1c">
 
 
 
