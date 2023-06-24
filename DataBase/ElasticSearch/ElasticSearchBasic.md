@@ -81,7 +81,73 @@
   ```
     
   ```
+#  
+#  
+## 엘라스틱 서치 basic
+  - 기본 컴포넌트 구성
+  - <img width="675" alt="스크린샷 2023-06-24 오후 1 36 26" src="https://github.com/pnci1029/TIL/assets/81909140/60645d1f-35ee-4b65-ab2a-cdfebd66d79e">
+  - 
+    - Cluster
+    ```
+  
+      Cluster
+      - cluster.name이 가장 중요
+      - 기본 값은 elasticSearch
+      - cluster 구성 시 node역할에 따른 구성 필수
+      - master node에 대한 quorum 구성 필수
+  
+        클러스터 구성 시 중요 설정
+        cluster.name:
+        discovery.type: 싱글 노드 구성 시 설정 (cluster.initial_master_node 설정과 동시에 구성 불가)
+        discovery.seed_host: 
+        cluster.initial_master_node:
+    ```
+    - Node
+    - <img width="944" alt="스크린샷 2023-06-24 오후 1 47 37" src="https://github.com/pnci1029/TIL/assets/81909140/67dc705e-9f75-4d6e-be58-a786eb956422">
+    ```
+  
+      Node
+      - 엘레스틱 서치 인스턴스가 시작할때마다 실행
+      - 노드들의 모음이 Cluster
+      - 단일 노드로도 실행 가능(=단일 노드 클러스터)
+      - 기본설정
+        node.name:
+        node.rolse:
+  
+    ```
+    - Index
+    ```
+    
+      index
+      - 분산된 Shard에 저장된 문서들의 논리적 집합
+      - Lucene 기준의 index를 엘라스틱 서치에서는 shard라고 함
+      - Primary shard와 Replica shard로 구성되며 Data Node에만 위치
+    
+    ```
+     - Shard
+    ```
+    
+      shard
+      - 물리적인 데이터가 저장되어 있는 단위
+      - 인덱싱 요청이 있을 때 분산된 위치에 있는 노드를 샤드로 문서를 색인
+      - 인덱스의 샤드는 각 노드에 따른 역할 분배 가능
+    
+    ```
+    #
+    #  
+  - 엘라스틱 서치는 jvm 영역에서 실행되기 때문에 heap 설정이 필요하다
+  - 시스템 메모리를 안정화하여 사용하기 위해 다음과같은 설정 필요
+    ```
+    
+      bootstrap.memory-lock: true       => 엘라스틱 서치는 http, transport 통신 둘다 지원. 노드간 통신은 transport로 이루어지며 통신을 위한 port와 content 전송에 따른 설정 가능
+    
+      http:port:9200                    => 기본 9200 포트로 지정되며 지정된 포트번호로 할당
+    
+      http.max_content_length           => rest api 요청 시 실제 데이터가 크거나 파일이 100MB가 넘는 경우 조절 처리
+    
+      http.cors.enabled                 => 기본값은 false, true로 지정할 경우 허용할 orgin 등록 필요
 
+    ```
 #  
 #  
 refered by (https://www.elastic.co/kr/downloads/)
