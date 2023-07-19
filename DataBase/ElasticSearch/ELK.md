@@ -145,7 +145,60 @@
     동일한 인덱스에 있는 도큐먼트는 동일한 스키마를 갖는다.
     인덱스 이름은 영어는 대문자로만 사용이 가능하며, 255바이트를 넘을 수 없다.
   ```
+#### 도큐먼트 CRUD
+  `인덱스 생성/확인/삭제`
+    - <img width="1647" alt="스크린샷 2023-07-19 오후 11 04 18" src="https://github.com/pnci1029/TIL/assets/81909140/624d816f-bd40-4803-9ca7-37b626bf74e9">
+  ```
+    도큐먼트는 반드시 하나의 인덱스에 포함되어야한다. 따라서 도큐먼트를 생성하기전 인덱스 생성이 필요하다.
 
+    인덱스 생성
+    PUT test_index
+
+    인덱스 조회
+    GET test_index
+
+    인덱스 삭제
+    DELETE test_index
+  ```
+  `도큐먼트 생성`
+    - <img width="1668" alt="스크린샷 2023-07-19 오후 11 06 21" src="https://github.com/pnci1029/TIL/assets/81909140/e909622e-df6c-49ab-9c66-236294c20f05">
+  ```
+    PUT test_index/_doc/1
+    {
+      "name" : "tester",
+      "age" : 10,
+      "gender" : "female"
+    }
+
+    생성된 인덱스에 name, age, gender 필드를 가지는 도큐먼트 생성
+  ```
+  `도큐먼트 조회`
+    - <img width="1679" alt="스크린샷 2023-07-19 오후 11 07 57" src="https://github.com/pnci1029/TIL/assets/81909140/6e481623-3e30-456e-9782-f941785d9c8e">
+  ```
+    GET test_index/_doc/1
+  ```
+  `도큐먼트 수정`
+  ```
+    특정 필드값 수정 시
+    PUT test_index/_doc/1
+    {
+      "name" : "tester1",
+      "age" : 15,
+      "gender" : "female"
+    }
+
+    혹은 _update API를 사용하여 특정 필드만 추가 업데이트도 가능하다.
+    PUT test_index/_doc/1
+    {
+    "doc":{
+        "name" : "tester111111",
+      }
+    }
+  ```
+  `도큐먼트 삭제`
+  ```
+    DELETE test_index/_doc/1
+  ```
 
 
 
