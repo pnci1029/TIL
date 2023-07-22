@@ -147,7 +147,8 @@
   ```
 #### 도큐먼트 CRUD
   `인덱스 생성/확인/삭제`
-    - <img width="1647" alt="스크린샷 2023-07-19 오후 11 04 18" src="https://github.com/pnci1029/TIL/assets/81909140/624d816f-bd40-4803-9ca7-37b626bf74e9">
+  
+  - <img width="1647" alt="스크린샷 2023-07-19 오후 11 04 18" src="https://github.com/pnci1029/TIL/assets/81909140/624d816f-bd40-4803-9ca7-37b626bf74e9">
   ```
     도큐먼트는 반드시 하나의 인덱스에 포함되어야한다. 따라서 도큐먼트를 생성하기전 인덱스 생성이 필요하다.
 
@@ -161,7 +162,8 @@
     DELETE test_index
   ```
   `도큐먼트 생성`
-    - <img width="1668" alt="스크린샷 2023-07-19 오후 11 06 21" src="https://github.com/pnci1029/TIL/assets/81909140/e909622e-df6c-49ab-9c66-236294c20f05">
+  
+  - <img width="1668" alt="스크린샷 2023-07-19 오후 11 06 21" src="https://github.com/pnci1029/TIL/assets/81909140/e909622e-df6c-49ab-9c66-236294c20f05">
   ```
     PUT test_index/_doc/1
     {
@@ -173,7 +175,8 @@
     생성된 인덱스에 name, age, gender 필드를 가지는 도큐먼트 생성
   ```
   `도큐먼트 조회`
-    - <img width="1679" alt="스크린샷 2023-07-19 오후 11 07 57" src="https://github.com/pnci1029/TIL/assets/81909140/6e481623-3e30-456e-9782-f941785d9c8e">
+  
+  - <img width="1679" alt="스크린샷 2023-07-19 오후 11 07 57" src="https://github.com/pnci1029/TIL/assets/81909140/6e481623-3e30-456e-9782-f941785d9c8e">
   ```
     GET test_index/_doc/1
   ```
@@ -386,7 +389,7 @@
     키워드 타입은 또한 집계에서 활용도가 큰데, 위와같은 쿼리를 통해
     contents.keyword 값이 같은 도큐먼트끼리 그룹핑이된다.
   ```
-####인덱스 템플릿
+#### 인덱스 템플릿
   ```
     인덱스 템플릿은 주로 설정이 동일한 인덱스를 만들 때 사용된다.
 
@@ -394,6 +397,7 @@
 
   ```
   `인덱스 템플릿 생성`
+  
   - <img width="1713" alt="스크린샷 2023-07-22 오후 1 51 18" src="https://github.com/pnci1029/TIL/assets/81909140/c7939b2e-4050-4423-aa9f-4e48454ce4fd">
 
 |파라미터|설명|
@@ -403,6 +407,7 @@
 |template|새로 생성되는 인덱스에 적용되는 settings, mappings 같은 인덱스 설정을 정의한다.|
     
   `템플릿 적용`
+  
   ```
     템플릿을 만들기 전 이미 존재하는 인덱스는 템플릿 패턴과 일치하더라도 템플릿이 적용되지않는다.
 
@@ -424,10 +429,12 @@
   #  
 
   `템플릿 우선순위`
-    - <img width="1717" alt="스크린샷 2023-07-22 오후 2 16 44" src="https://github.com/pnci1029/TIL/assets/81909140/498ccc0d-9771-433e-9564-f87fcc5f1bef">
+  
+  - <img width="1717" alt="스크린샷 2023-07-22 오후 2 16 44" src="https://github.com/pnci1029/TIL/assets/81909140/498ccc0d-9771-433e-9564-f87fcc5f1bef">
   #  
   `다이나믹 템플릿`
-    - <img width="1698" alt="스크린샷 2023-07-22 오후 2 36 58" src="https://github.com/pnci1029/TIL/assets/81909140/f957a66d-198d-4d84-aa02-2230ae133d0a">
+  
+  - <img width="1698" alt="스크린샷 2023-07-22 오후 2 36 58" src="https://github.com/pnci1029/TIL/assets/81909140/f957a66d-198d-4d84-aa02-2230ae133d0a">
 
   ```
     다이나믹 템플릿은 매핑을 정확하게 정할 수 없거나 대략적인 구조만 알고 있을 때 사용할 수 있는 방법이다.
@@ -450,6 +457,7 @@
   `토큰과 용어(term)`
   
   - ![토큰과용어](https://github.com/pnci1029/TIL/assets/81909140/a4d9e645-7cae-4c10-a233-cda205498048)
+  
     ```
       여러 용어가 포함된 문장이 분석기를 거쳐 인덱스에 저장된다고 가정했을때,
 
@@ -473,14 +481,16 @@
   |토큰 필터|토큰들을 대소문자 구분, 형태소 분석등의 작업등으로 필터링 한다.|
 #  
   `역인덱싱`
-    - ![역인덱싱](https://github.com/pnci1029/TIL/assets/81909140/0faa8b81-8962-4aba-8a3b-0810b03ef63b)
+  
+  - ![역인덱싱](https://github.com/pnci1029/TIL/assets/81909140/0faa8b81-8962-4aba-8a3b-0810b03ef63b)
 
   ```
     문자열을 토큰화하여 이를 인덱싱하는것을 말한다.
   ```
 #  
   `분석기 종류`
-    - ex) "The 10 most loving dob breeds."
+  
+  - ex) "The 10 most loving dob breeds."
   |분석기|설명|
   |------|---|
   |standard|특정 분석기 설정이 없을때 디폴트 값 분석기. 소문자 변경 필터 포함 -> [the, 10, most, loving, dog, breeds]|
