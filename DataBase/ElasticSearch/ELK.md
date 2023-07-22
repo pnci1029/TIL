@@ -491,6 +491,7 @@
   `분석기 종류`
   
   - ex) "The 10 most loving dob breeds."
+  
   |분석기|설명|
   |------|---|
   |standard|특정 분석기 설정이 없을때 디폴트 값 분석기. 소문자 변경 필터 포함 -> [the, 10, most, loving, dog, breeds]|
