@@ -869,6 +869,35 @@
 
   키바나는 데이터 소스를 엘라스틱 서치 인덱스에서 가져오는데 이를 인덱스패턴이라고 한다.
 ```
+`키바나 대시보드`
+  - <img width="1699" alt="스크린샷 2023-09-13 오후 7 47 16" src="https://github.com/pnci1029/TIL/assets/81909140/a3afcd4d-f729-47f7-b691-82e048092d34">
+  - <img width="1708" alt="스크린샷 2023-09-13 오후 10 08 10" src="https://github.com/pnci1029/TIL/assets/81909140/d0d9e9d4-1f82-4370-a1ea-35de2502240f">
+
+#  
+`키바나 캔버스`
+  - <img width="1691" alt="스크린샷 2023-09-13 오후 7 48 51" src="https://github.com/pnci1029/TIL/assets/81909140/ec3da2e0-4544-4a69-8ad0-31d26407242c">
+  - <img width="1708" alt="스크린샷 2023-09-13 오후 10 08 10" src="https://github.com/pnci1029/TIL/assets/81909140/76b6cdcd-b8d1-427c-bf84-394bcf09f069">
+
+|데이터 소스|설명|
+|------|---|
+|Timelion|Timelion 문법을 이용해 데이터 시각화|
+|Demo Data|프로젝트 상관 없이 데모로 제공하는 데이터 사용|
+|Elasticsearch SQl|엘라스틱 서치 쿼리 사용|
+|Elasticsearch raw documents|엘라스틱 서치 데이터를 집계 없이 직접 처리|
+
+```
+  엘라스틱에 있는 데이터를 가져오기 위해 가장 일반적이고 편한 방법은 엘라스틱서치 SQL을 사용하는것이다.
+```
+#  
+`엘라스틱 서치 SQL`
+  - <img width="857" alt="스크린샷 2023-09-13 오후 10 17 48" src="https://github.com/pnci1029/TIL/assets/81909140/ad48aa02-efbe-488f-9bfe-a9e7106b4d94">
+```
+  엘라스틱서치 SQL을 사용하여 조회
+```
+  - <img width="1712" alt="스크린샷 2023-09-13 오후 10 23 34" src="https://github.com/pnci1029/TIL/assets/81909140/ddfe5739-5dd4-4699-8f59-f8857a83caf7">
+  - <img width="1655" alt="스크린샷 2023-09-13 오후 10 23 06" src="https://github.com/pnci1029/TIL/assets/81909140/fda37ff1-9c76-4097-b5aa-7cfc170925bb">
+
+
 
 #  
 #  
