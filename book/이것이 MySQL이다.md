@@ -58,3 +58,49 @@ WHERE name = 'John Doe';
   - 사용자에게 권한을 부여하거나 빼앗을 때 주로 사용
   - GRANT / REVOKE / DENY등 존재
 ```
+#### 예제
+```
+
+SELECT
+    DATE_FORMAT(MM.REG_DATE, '%Y-%m-%d') AS 'regtime',
+    IF(DATE_FORMAT(MM.REG_DATE, '%i:%s') = DATE_FORMAT(M.JOIN_TIME, '%i:%s'), 'new', 'excha') AS 'convert',
+    CASE
+        WHEN MM.JOIN_PATH LIKE '%java%' THEN '1a'
+        WHEN MM.JOIN_PATH LIKE '%spring%' THEN '2a'
+        WHEN MM.JOIN_PATH LIKE '%react%' THEN '3a'
+        WHEN MM.JOIN_PATH LIKE '%php%' THEN '4a'
+        WHEN MM.JOIN_PATH LIKE '%kotlin%' THEN '5a'
+        WHEN MM.JOIN_PATH LIKE '%jas%' THEN '6a'
+        WHEN MM.JOIN_PATH LIKE '%html%' THEN '7a'
+        WHEN MM.JOIN_PATH LIKE '%sql%' THEN '8a'
+        ELSE 'else'
+        END AS 'lang',
+    M.em AS 'em',
+    MM.na AS 'na',
+    MM.cp AS 'cp',
+    MM.bir AS 'bir',
+    M.adr AS 'adr' ,
+    CASE
+        WHEN MM.GEN IN (1, 3) THEN 'MAN'
+        ELSE 'WOMAN'
+        END AS 'alGEn',
+    IF(M.MGD_ID IS NULL, 'up', 'down') AS 'alpha',
+    IF(M.MGD_ID IS NOT NULL, MG.NAME, ' ') AS 'a',
+    IF(M.MGD_ID IS NOT NULL, MG.CELL, ' ') AS 'b',
+    IF(M.MGD_ID IS NOT NULL, MG.BIR, ' ') AS 'c',
+   ,IF((SELECT COUNT(*) FROM pat AS P WHERE P.ID = M.ID
+                                                           and ((LEFT(pk,8) <=20231012 and RIGHT(pk,8) >=20231012)
+    or(LEFT(mk,8) <=20231012 and RIGHT(mk,8) >=20231012)
+    or(LEFT(sk,8) <=20230924 and RIGHT(sk,8) >=20231012)
+    or(LEFT(kmk,8) <=20231012 and RIGHT(kmk,8) >=20231012)))>=1,'sub','nor') AS 'subYn'
+FROM
+    me AS M
+        INNER JOIN MAS AS MM ON MM.ID = M.MST_ID
+        LEFT JOIN GUA MG on M.MGD_ID = MG.ID
+WHERE
+    MM.REG_DATE BETWEEN '2023-04-11 00:00:00' AND '2023-10-12 23:59:59'
+    and M.DROP_TIME IS NULL
+ORDER BY
+    MM.REG_DATE ASC
+
+```
