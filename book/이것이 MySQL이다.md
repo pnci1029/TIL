@@ -65,14 +65,14 @@ SELECT
     DATE_FORMAT(MM.REG_DATE, '%Y-%m-%d') AS 'regtime',
     IF(DATE_FORMAT(MM.REG_DATE, '%i:%s') = DATE_FORMAT(M.JOIN_TIME, '%i:%s'), 'new', 'excha') AS 'convert',
     CASE
-        WHEN MM.JOIN_PATH LIKE '%java%' THEN '1a'
-        WHEN MM.JOIN_PATH LIKE '%spring%' THEN '2a'
-        WHEN MM.JOIN_PATH LIKE '%react%' THEN '3a'
-        WHEN MM.JOIN_PATH LIKE '%php%' THEN '4a'
-        WHEN MM.JOIN_PATH LIKE '%kotlin%' THEN '5a'
-        WHEN MM.JOIN_PATH LIKE '%jas%' THEN '6a'
-        WHEN MM.JOIN_PATH LIKE '%html%' THEN '7a'
-        WHEN MM.JOIN_PATH LIKE '%sql%' THEN '8a'
+        WHEN MM.jp LIKE '%java%' THEN '1a'
+        WHEN MM.jp LIKE '%spring%' THEN '2a'
+        WHEN MM.jp LIKE '%react%' THEN '3a'
+        WHEN MM.jp LIKE '%php%' THEN '4a'
+        WHEN MM.jp LIKE '%kotlin%' THEN '5a'
+        WHEN MM.jp LIKE '%jas%' THEN '6a'
+        WHEN MM.jp LIKE '%html%' THEN '7a'
+        WHEN MM.jp LIKE '%sql%' THEN '8a'
         ELSE 'else'
         END AS 'lang',
     M.em AS 'em',
