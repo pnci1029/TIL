@@ -1,3 +1,21 @@
+## QueryDSL에서 Impl Custom을 쓰는이유?
+```
+  - 스프링 data JPA를 사용하며 사용자 정의 쿼리를 함께 사용하기 위함
+    1. 사용자 정의 인터페이스 생성
+    2. 사용자 정의 구현체 생성
+    3. 스프링 data JPA에 사용자 정의 인터페이스 상속
+
+  - 핵심 비즈니스 로직으로 재사용 가능성이 높은 쿼리나 엔티티를 조회하는 경우는 Custom에 사용
+  - 다만 공용성이 없고 특정 api에 특화된 복잡한 쿼리일 경우
+      @Repository
+      public class MemberQueryRepository{
+      JpaQueryFactory 의존성 주입...
+    }
+  
+```
+
+
+
 # QueryDSL vs Native Query vs JPQL
   - aaa
 
