@@ -1,6 +1,8 @@
 ## QueryDSL에서 Impl Custom을 쓰는이유?
 ```
   - 스프링 data JPA를 사용하며 사용자 정의 쿼리를 함께 사용하기 위함
+  memberRepository.searchMember();
+  memberRepository.findById(id);
     1. 사용자 정의 인터페이스 생성
     2. 사용자 정의 구현체 생성
     3. 스프링 data JPA에 사용자 정의 인터페이스 상속
@@ -11,9 +13,20 @@
       public class MemberQueryRepository{
       JpaQueryFactory 의존성 주입...
     }
+
   
 ```
+`그렇다면 굳이 인터페이스를 둘 이유가 있을까? 바로 구현체를 둬도 되지 않을까?
+  `
+```
+  1. 인터페이스를 통해 메소드명을 바로 확인이 가능하고, 한번에 어떤 기능을 하는 기능인지 파악가능
 
+  2. 구현체는 인터페이스가 어떤 기능을 할것인지 정의해놓은 것이지 메소드 명을 통해 기능을 파악하기 어렵다.
+
+  3. 은닉의 기능
+```
+
+  - ![스크린샷 2023-11-17 오후 3 43 15](https://github.com/pnci1029/TIL/assets/81909140/636537a2-1cbc-4583-ae10-abcaf1528211)
 
 
 # QueryDSL vs Native Query vs JPQL
