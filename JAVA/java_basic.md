@@ -126,7 +126,7 @@ ex) Student student1 = new Student();
 ```
 #  
 ## static
-`변수의 종류`
+`static 변수의 종류`
 ```
   인스턴스 변수 : static 이 붙지 않은 변수
     - static이 붙지 않은 변수는 인스턴스를 생성해야 사용할 수 있고, 인스턴스에 소속되어 있다.
@@ -151,6 +151,55 @@ ex) Student student1 = new Student();
     메서드 영역은 프로그램 전체에서 사용하는 공용 공간이고
     클래스 변수는 JVM에 로딩 되는 순간 생성되고 JVM이 종료될때까지 생명주기가 이어진다.
 ```
+#  
+#  
+`static 메소드의 종류`
+```
+  * static이 붙은 메서드는 객체 생성 없이 클래스명.메서드명으로 호출이 가능하다.
+  정적 메서드 덕분에 불필요한 객체 생성 없이 편리하게 메서드를 사용 할 수 있다.
+
+  1. 클래스 메서드
+   - 메서드 앞에 static을 붙인 메서드로 인스턴스 생성 없이 클래스에서 바로 메서드를 호출이 가능하다.
+
+  2. 인스턴스 메서드
+    - static이 붙지 않은 메서드는 인스턴스를 생성해야 호출할 수 있다.
+```
+#  
+`주의사항`
+```
+  package static2;
+
+public class DecoData {
+    private int instanceValue;
+    private static int staticValue;
+
+    public static void staticCall() {
+//        instancevalue++;       compile error
+//        instanceMethod();      compile error
+        
+        staticMethod();
+        staticValue++;
+    }
+
+    public void instanceMethod() {
+        System.out.println("instanceValue = " + instanceValue);
+    }
+
+    public static void staticMethod() {
+        System.out.println("staticValue = " + staticValue);
+    }
+
+  *
+  정적(static) 메서드에서 인스턴스 변수나 메서드를 호출할 수 없다.
+  정적메서드나 변수는 JVM실행시에 메모리에 값이 할당되기 때문에 사용이 가능하나,
+
+  인스턴스 변수나 메서드는 인스턴스 객체가 생성되지 않았기 떄문에 참조값이 만들어지지 않은 상태이다.
+  따라서 정적 메서드에서 사용이 불가능하다.
+
+}
+
+```
+
 
 
 
