@@ -7,7 +7,9 @@
 
       상세 : https://kubernetes.io/ko/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 ```
-#  
+
+<br />
+
 `쿠버네티스 설치`
 ```
   1. 컨테이너 런타임 설치
@@ -39,7 +41,24 @@
 
       1.2 컨테이너 런타임(containderd 설치)
 
+      1.3 cri 활성화
+
+
+  2. kubeadm, kubelet 및 kubectl 설치
+        
+
       상세 : https://kubernetes.io/ko/docs/setup/production-environment/container-runtimes/
+```
+
+<br />
+
+`마스터 노드 세팅`
+```
+  1. kubeadm으로 클러스터 생성
+    1.1 클러스터 초기화
+    1.2 kubectl 사용 설정
+    1.3 CNI 플러그인 설치
+    1.4 matser 에 파드 생성할 수 있도록 설정
 ```
 
 
