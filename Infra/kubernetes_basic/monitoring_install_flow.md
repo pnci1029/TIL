@@ -81,6 +81,103 @@ kubectl get pods -n loki-stack
 - 메트릭 정보
    - <img width="1710" alt="스크린샷 2024-04-27 오후 2 26 38" src="https://github.com/pnci1029/TIL/assets/81909140/271318e9-7497-4f04-abe0-714eba289128">
 
+<br />
+<br />
+
+
+`샘플 앱 yaml 속성`
+```
+  apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-1-2-2-1
+spec:
+  selector:
+    matchLabels:
+      app: '1.2.2.1'
+  replicas: 2          //---------> 파드 이중화 (Deploymnet -> replicas)
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: '1.2.2.1'
+    spec:
+      containers:
+        - name: app-1-2-2-1
+          image: 1pro/app
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          startupProbe:
+            httpGet:
+              path: "/ready"
+              port: http
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: "/ready"
+              port: http
+          readinessProbe:
+            httpGet:
+              path: "/ready"
+              port: http
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "200Mi"
+              cpu: "200m"
+---
+apiVersion: v1
+kind: Service           //---------> 기능 자체적으로 파드가 2개가 있을때 트래픽을 분산하여 처리
+metadata:
+  name: app-1-2-2-1
+spec:
+  selector:
+    app: '1.2.2.1'
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 31221 //---> 마스터 노드에서 해당 포트로 트래픽을 보냈을때 이 앱에서 처리 (service -> replicas)
+  type: NodePort
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: app-1-2-2-1
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: app-1-2-2-1
+  minReplicas: 2          //---------> 스케일링 정보 미니멈 / 맥시멈
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 40          //---------> 스케일링은 CPU가 평균 40% 초과했을때 증가 처리
+```
+
+<br />
+<br />
+<br />
+
+`지속 트래픽 요청을 통해 스케일링 모니터링 확인`
+```  
+  while true; do curl http://192.168.56.30:31221/hostname; sleep 2; echo '';  done;
+```
+1. 두 파드에 번갈아가며 위 요청 처리
+  - <img width="1116" alt="스크린샷 2024-04-27 오후 2 45 44" src="https://github.com/pnci1029/TIL/assets/81909140/f56d3929-f3f4-4e17-b9bb-f9d02bd4dff6">
+2. 파드 두개 중 하나 삭제 (삭제 후 파드 재생성)
+  - <img width="1466" alt="스크린샷 2024-04-27 오후 2 47 10" src="https://github.com/pnci1029/TIL/assets/81909140/43b3b9e9-09cc-4f80-9151-797654095dd6">
+3. 삭제되자 남은 파드에 요청 후 재생성되자 다시 트래픽 분배
+  - <img width="1311" alt="스크린샷 2024-04-27 오후 2 47 45" src="https://github.com/pnci1029/TIL/assets/81909140/836ad23e-640e-4988-9d6f-2849755fea1f">
 
   
 
@@ -90,5 +187,6 @@ kubectl get pods -n loki-stack
 <br />
 <br />
 <br />
-(출처 : https://www.inflearn.com/course/lecture?courseSlug=%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EC%96%B4%EB%82%98%EB%8D%94-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%A7%80%EC%83%81%ED%8E%B8-sprint1&unitId=205433)
+(출처 : https://www.inflearn.com/course/lecture?courseSlug=%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EC%96%B4%EB%82%98%EB%8D%94-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%A7%80%EC%83%81%ED%8E%B8-sprint1&unitId=205433, 
+https://cafe.naver.com/kubeops)
 
