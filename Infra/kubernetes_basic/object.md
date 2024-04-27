@@ -110,6 +110,198 @@ spec:
 
 ```
 
+<br />
+<br />
+
+`Service`
+```
+- 파드에 트래픽을 연결시켜주는 역할
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: anotherclass-123                  // ------------> 여전히 위 네임스페이스 이름 사용
+  name: api-tester-1231
+  labels:
+    part-of: k8s-anotherclass
+    component: backend-server
+    name: api-tester
+    instance: api-tester-1231
+    version: 1.0.0
+    managed-by: dashboard
+spec:
+  selector:
+    part-of: k8s-anotherclass
+    component: backend-server
+    name: api-tester
+    instance: api-tester-1231
+  ports:
+    - port: 80
+      targetPort: http
+      nodePort: 31231
+  type: NodePort
+```
+
+<br />
+<br />
+
+`Configmap, Secret`
+```
+- 파드에 환경변수 값을 제공
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: anotherclass-123
+  name: api-tester-1231-properties
+  labels:
+    part-of: k8s-anotherclass
+    component: backend-server
+    name: api-tester
+    instance: api-tester-1231
+    version: 1.0.0
+    managed-by: dashboard
+data:
+  spring_profiles_active: "dev"
+  application_role: "ALL"
+  postgresql_filepath: "/usr/src/myapp/datasource/postgresql-info.yaml"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: anotherclass-123
+  name: api-tester-1231-postgresql
+  labels:
+    part-of: k8s-anotherclass
+    component: backend-server
+    name: api-tester
+    instance: api-tester-1231
+    version: 1.0.0
+    managed-by: dashboard
+stringData:
+  postgresql-info.yaml: |
+    driver-class-name: "org.postgresql.Driver"
+    url: "jdbc:postgresql://postgresql:5431"
+    username: "dev"
+    password: "dev123"
+```
+
+<br />
+<br />
+
+`PVC, PV`
+```
+- PV 는 Namespace 정보가 없다.
+- 이는 PV Object가 클러스터 레벨의 Object이기 때문(나머지는 Namespce레벨의 Object)
+  * PersistentVolume, Namespace는 클러스터 레벨  Deployment, Service들은 Namespace 레벨
+- 
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: anotherclass-123
+  name: api-tester-1231-files
+  labels:
+    part-of: k8s-anotherclass
+    component: backend-server
+    name: api-tester
+    instance: api-tester-1231
+    version: 1.0.0
+    managed-by: kubectl
+spec:
+  resources:
+    requests:
+      storage: 2G
+  accessModes:
+    - ReadWriteMany
+  selector:
+    matchLabels:
+      part-of: k8s-anotherclass
+      component: backend-server
+      name: api-tester
+      instance: api-tester-1231-files
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: api-tester-1231-files
+  labels:
+    part-of: k8s-anotherclass
+    component: backend-server
+    name: api-tester
+    instance: api-tester-1231-files
+    version: 1.0.0
+    managed-by: dashboard
+spec:
+  capacity:
+    storage: 2G
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  local:
+    path: "/root/k8s-local-volume/1231"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - {key: kubernetes.io/hostname, operator: In, values: [k8s-master]}
+```
+
+<br />
+<br />
+
+`HPA`
+```
+- 부하에 따라 파드를 늘리거나 줄이는 스케일링 역할
+
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: anotherclass-123
+  name: api-tester-1231-default
+  labels:
+    part-of: k8s-anotherclass
+    component: backend-server
+    name: api-tester
+    instance: api-tester-1231
+    version: 1.0.0
+    managed-by: dashboard
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment               //-------------------> 스케일링 대상 지정(Deployment)
+    name: api-tester-1231
+  minReplicas: 2               //-------------------> 최소
+  maxReplicas: 4               //-------------------> 최대
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60               //-----------> 평균 40%가 늘어나면 스케일 아웃 설정
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 120          //-----------> 파드 스케일 변화 후 지정 시간 후 재변환
+```
+
+<br />
+<br />
+<br />
+
+```
+
+파드들을 지우고 싶다면 네임스페이스를 지우면 내부의 Object들이 모두 삭제가됨
+kubectl delete ns anotherclass-123
+
+다만 PV는 네임스페이스 레벨이 아니기 때문에 별도 삭제 요청 필요
+kubectl delete pv api-tester-1231-files
+
+```
+
+
 
 <br />
 <br />
