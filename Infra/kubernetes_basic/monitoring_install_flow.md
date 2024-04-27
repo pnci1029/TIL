@@ -55,9 +55,11 @@ kubectl get pods -n loki-stack
 
 <br />
 <br />
+
 `5. 설치 대시보드 확인`
+
 ```
-  1. http://192.168.56.30:30001/ 초기 id/pw : admin/admin
+  1. http://192.168.56.30:30001/(그라파나) 초기 id/pw : admin/admin
 
   2. 쿠버네티스 대시보드를 통해 샘플 앱 파드 생성
     https://192.168.56.30:30000/ -> 우측상단 + 클릭
@@ -65,12 +67,21 @@ kubectl get pods -n loki-stack
     yaml 값 입력 후 적용
 
 ```
-  - <img width="1065" alt="스크린샷 2024-04-27 오후 2 34 58" src="https://github.com/pnci1029/TIL/assets/81909140/8227c9e2-5756-4a74-b59e-48e2a8501364">
+- <img width="1712" alt="스크린샷 2024-04-27 오후 2 13 29" src="https://github.com/pnci1029/TIL/assets/81909140/de7461c4-e6e5-490e-9245-a233f192a622">
+- <img width="1065" alt="스크린샷 2024-04-27 오후 2 34 58" src="https://github.com/pnci1029/TIL/assets/81909140/8227c9e2-5756-4a74-b59e-48e2a8501364">
 
 ```
-  3.
+  3. 그라파나 접속 후 샘플 파드 조회
+
 ```
-   
+<br />
+
+- 파드정보
+   - <img width="1697" alt="스크린샷 2024-04-27 오후 2 14 00" src="https://github.com/pnci1029/TIL/assets/81909140/fa5eb804-9494-4ec5-a4a7-63f127d586f1">
+- 메트릭 정보
+   - <img width="1710" alt="스크린샷 2024-04-27 오후 2 26 38" src="https://github.com/pnci1029/TIL/assets/81909140/271318e9-7497-4f04-abe0-714eba289128">
+
+
   
 
 <br />
